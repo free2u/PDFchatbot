@@ -1,6 +1,6 @@
 import pickle
 from dotenv import load_dotenv
-from PyPDF2 import PdfReader
+from PyPDF2 import PdfReader,PdfWriter
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
@@ -18,6 +18,8 @@ load_dotenv()
 
 # Path to save the trained model
 model_filename = "trained_model.pkl"
+
+
 
 def traineee(pdfs):
     # Load existing model or train a new one
@@ -39,7 +41,7 @@ def traineee(pdfs):
     # Split into chunks
     text_splitter = CharacterTextSplitter(
         separator="\n",
-        chunk_size=1000,
+        chunk_size=2000,
         chunk_overlap=200,
         length_function=len
     )

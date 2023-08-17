@@ -72,6 +72,7 @@ function generatemodel(){
 
         .then(data => {
             console.log(data.message)
+            document.getElementById('flash-message').style.display="block";
         })
         .catch(error => {
             console.error("Error:", error);
@@ -211,3 +212,7 @@ return false;
 
 
 });
+
+function generatelink(){
+    console.log("http://www.firebase/jhdsfkdshf")
+}

@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for,jsonify
 import os
 from trainer import traineee
-from chatbot import chatbot
+
 
 
 app = Flask(__name__,static_folder='static')
@@ -61,8 +61,10 @@ def generatemodel():
 
 @app.route('/messaging',methods=['POST','GET'])
 def message():
+
     data="Hi there welcome let the testing begin"
     if request.method == 'POST':
+        from chatbot import chatbot
         message = request.json["message"]
         data = {
             "message": str(chatbot(message))

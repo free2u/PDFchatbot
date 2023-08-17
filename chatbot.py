@@ -24,5 +24,4 @@ def chatbot(user_question):
         with get_openai_callback() as cb:
             # Pass the relevant documents and user's question to the question-answering chain
             response = chain.run(input_documents=relevant_documents, question=user_question)
-            print(cb)
             return (response)

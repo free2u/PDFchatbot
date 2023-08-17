@@ -30,7 +30,7 @@ li {
     text-decoration: none;
     color: #070707;
     border: 1px solid black;
-    height: 30px;
+    height: 100%;
     width: 100%;
     background-color: rgb(255, 254, 254);
     text-align: center;
@@ -576,3 +576,15 @@ transform: translateY(-10px);
 display: none;
 }
 
+
+.flash-message{
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    height: 40px;
+    text-align: center;
+    padding-top: 20px;
+    border-radius: 5px;
+    border: 1px solid rgb(218, 218, 218);
+    display: none;
+    
+}
