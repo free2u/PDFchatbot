@@ -67,12 +67,17 @@ function hide(){
 }
 
 function generatemodel(){
+    document.getElementById('loader').style.display="block"
+    document.getElementById('generate-button').style.display="none"
     fetch("/generateModel")  // Replace with your actual Flask API endpoint
         .then(response => response.json())
 
         .then(data => {
             console.log(data.message)
             document.getElementById('flash-message').style.display="block";
+            document.getElementById('loader').style.display="none"
+            document.getElementById('generate-button').style.display="block"
+
         })
         .catch(error => {
             console.error("Error:", error);
@@ -213,6 +218,31 @@ return false;
 
 });
 
-function generatelink(){
-    console.log("http://www.firebase/jhdsfkdshf")
+
+
+
+
+// Function to generate a random string
+function generateRandomString(length) {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return result;
 }
+
+// Function to generate and copy the link
+function generateAndCopyLink() {
+    var link = window.location.origin + '/sharing/' + generateRandomString(10);
+    var textarea = document.createElement("textarea");
+    textarea.value = link;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textarea);
+    alert("Link copied to clipboard: " + link);
+}
+
+// Add an event listener to the button
+document.getElementById("share-button").addEventListener("click", generateAndCopyLink);

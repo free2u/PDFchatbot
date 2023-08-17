@@ -1,18 +1,42 @@
-from flask import Flask, render_template, request, redirect, url_for,jsonify
+from flask import Flask, render_template, request, redirect, url_for,jsonify,session
 import os
 from trainer import traineee
 
 
 
 app = Flask(__name__,static_folder='static')
+app.secret_key = 'sadhjkasdhjkashdkjashldjkalksd123'
 
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-@app.route('/')
+@app.route('/',methods=['POST','GET'])
+def login():
+
+    try:
+        if session['loggedin']:
+            return redirect(url_for('index'))
+        
+    except:
+        pass
+
+    if request.method=="POST":
+        if request.form['password']=="Youdontknow":
+            session['loggedin']=True
+            return redirect(url_for('index'))
+        
+        
+    return render_template("login.html")
+        
+@app.route('/mainpage',methods=['POST','GET'])
 def index():
-    uploaded_pdfs = os.listdir(app.config['UPLOAD_FOLDER'])
-    return render_template('index.html', uploaded_pdfs=uploaded_pdfs)
+    try:
+        if session['loggedin']:
+            uploaded_pdfs = os.listdir(app.config['UPLOAD_FOLDER'])
+            return render_template('index.html', uploaded_pdfs=uploaded_pdfs)
+    except Exception as e:
+        print(e)
+        return redirect(url_for('login'))
 
 
 @app.route('/upload_pdf', methods=['POST'])
@@ -72,6 +96,13 @@ def message():
         return jsonify(data)
     
 
+
+@app.route('/sharing/<string:chat_id>')
+def sharing(chat_id):
+
+
+
+    return render_template("mainchat.html")
 
 
 

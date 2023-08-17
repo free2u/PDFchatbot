@@ -25,12 +25,14 @@
             {% endfor %}
         </ul>
 
+
         <div>
-            <button onclick="generatemodel()" class="generate">Generate a Model</button>
+            <div id="loader" class="loader"></div>
+            <button id="generate-button" onclick="generatemodel()" class="generate">Generate a Model</button>
         </div>
 
         <div style="margin-top: 20px;">
-            <button onclick="generatelink()" class="generate">Share chatbot with friends</button>
+            <button  id="share-button" onclick="generatelink()" class="generate">Share chatbot with friends</button>
         </div>
     </div>
     <div style="display: flex; flex-direction: row;gap: 160px;">
