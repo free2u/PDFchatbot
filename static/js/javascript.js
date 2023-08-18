@@ -153,8 +153,8 @@ $('<div class="timestamp">' + d.getHours() + ':' + m + '</div>').appendTo($('.me
 function insertMessage() {
 msg = $('.message-input').val();
 
-// $("#flask_message").val(msg);
-// $("#flask_form").submit();
+
+
 
 var d = {message: msg};
 $.ajax({
@@ -169,8 +169,6 @@ $.ajax({
         if ($('.message-input').val() != '') {
         return false;
         }
-        $('<div class="message loading new"><figure class="avatar"><img src="https://img.freepik.com/premium-vector/chatbot-icon-concept-chat-bot-chatterbot-robot-virtual-assistance-website_123447-1615.jpg?w=2000" /></figure><span></span></div>').appendTo($('.mCSB_container'));
-        updateScrollbar();
 
         setTimeout(function() {
         $('.message.loading').remove();
@@ -191,6 +189,8 @@ return false;
 }
 
 $('<div class="message message-personal">' + msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
+$('<div class="message loading new"><figure class="avatar"><img src="https://img.freepik.com/premium-vector/chatbot-icon-concept-chat-bot-chatterbot-robot-virtual-assistance-website_123447-1615.jpg?w=2000" /></figure><span></span></div>').appendTo($('.mCSB_container'));
+updateScrollbar();
 
 setDate();
 $('.message-input').val(null);
